@@ -8,14 +8,16 @@ namespace sqltest
         {
             try 
             { 
-                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                // SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-                builder.DataSource = "<your_server.database.windows.net>"; 
-                builder.UserID = "<your_username>";            
-                builder.Password = "<your_password>";     
-                builder.InitialCatalog = "<your_database>";
-         
-                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                // builder.DataSource = "."; 
+                // builder.UserID = "sa";            
+                // builder.Password = "2006";     
+                // builder.InitialCatalog = "BancoTeste";
+                
+                //using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                string connectionString = "Server=.;Database=BancoTeste;Trusted_Connection=True;";
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     Console.WriteLine("\nQuery data example:");
                     Console.WriteLine("=========================================\n");
