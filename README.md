@@ -21,7 +21,9 @@ dotnet add package Microsoft.Data.SqlClient  //adiciona a primeira vez
 
 dotnet restore //atualiza os pacotes na maquina que nao adiciona
 
+dotnet remove package Microsoft.Data.SqlClient  //removendo pq eh uma bosta
 
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 
 
 
