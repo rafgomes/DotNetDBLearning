@@ -68,8 +68,8 @@ namespace sqltest
                                 {
                                     Console.WriteLine($"Nome: {reader.GetString(0)} Telefone: {reader.GetString(1)}");
                                 }
-
-                            }
+                                
+                                    }
                         }
                     }
                 }

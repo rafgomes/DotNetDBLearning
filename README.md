@@ -25,7 +25,7 @@ dotnet remove package Microsoft.Data.SqlClient  //removendo pq eh uma bosta
 
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 
-
+https://learn.microsoft.com/pt-br/ef/core/  //aprendendo entity framework
 
  
 

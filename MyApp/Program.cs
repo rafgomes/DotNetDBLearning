@@ -1,48 +1,62 @@
 ﻿
-namespace sqltest
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+using MyApp.Database;
+
+namespace MyApp
 {
+
     class Program
     {
         static void Main(string[] args)
         {
-            try 
-            { 
-                // SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-
-                // builder.DataSource = "."; 
-                // builder.UserID = "sa";            
-                // builder.Password = "2006";     
-                // builder.InitialCatalog = "BancoTeste";
-                
-                //using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-                string connectionString = "Server=.;Database=BancoTeste;Trusted_Connection=True;";
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    Console.WriteLine("\nQuery data example:");
-                    Console.WriteLine("=========================================\n");
-                    
-                    connection.Open();       
-
-                    String sql = "SELECT name, collation_name FROM sys.databases";
-
-                    using (SqlCommand command = new SqlCommand(sql, connection))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
-                            }
-                        }
-                    }                    
-                }
-            }
-            catch (SqlException e)
+            try
             {
-                Console.WriteLine(e.ToString());
+                using (var context = new ListaDbContext())
+                {
+        
+                    List<Lista> listaDeClientes = context.Lista.ToList();
+                
+                    foreach(var cliente in listaDeClientes)
+                    {
+                        Console.WriteLine($"Nome: {cliente.Nome} Telefone: {cliente.Telefone}");
+                    }
+
+                    //using (DbCommand command = context.Database.GetDbConnection().CreateCommand())
+                    //{                       
+                    //    String sql = "SELECT Id, Nome, TELEFONE FROM Lista";
+                    //    command.CommandText = sql;
+                    //    using (DbDataReader reader = command.ExecuteReader())
+                    //    {
+                    //        while (reader.Read())
+                    //        {
+                    //            int id = reader.GetInt32(0);
+                    //            string name = reader.GetString(1);
+                    //            string telefone = reader.GetString(2);
+                    //            Cliente cliente = new Cliente();
+                    //            cliente.Id = id;
+                    //            cliente.Nome = name;
+                    //            cliente.Telefone = telefone;
+
+                    //            Console.WriteLine($"Nome: {cliente.Nome} Telefone: {cliente.Telefone}");
+                    //        }
+
+                    //    }
+                    //}
+                }
+
             }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+
             Console.WriteLine("\nDone. Press enter.");
-            Console.ReadLine(); 
+            Console.ReadLine();
+
         }
     }
 }
