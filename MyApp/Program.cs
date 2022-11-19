@@ -13,15 +13,29 @@ namespace MyApp
         {
             try
             {
+
                 using (var context = new ListaDbContext())
                 {
-        
+
                     List<Lista> listaDeClientes = context.Lista.ToList();
-                
-                    foreach(var cliente in listaDeClientes)
+
+                    foreach (var cliente in listaDeClientes)
                     {
+                       
                         Console.WriteLine($"Nome: {cliente.Nome} Telefone: {cliente.Telefone}");
+
+                       
                     }
+
+                    var teste = new Lista();
+
+                    teste.Nome = "Griino";
+                    teste.Telefone = "123456";
+
+                    context.Lista.Add(teste);
+
+                    context.SaveChanges();
+
 
                     //using (DbCommand command = context.Database.GetDbConnection().CreateCommand())
                     //{                       
